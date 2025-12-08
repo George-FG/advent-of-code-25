@@ -32,7 +32,7 @@ ranges.forEach(range => {
         let found = false;
         getMultiples(s.length).forEach(multiple => {
             if (multiple === 1) return;
-            const slices = [];
+            const slices: string[] = [];
             for (let j = 0; j < multiple; j++) {
                 slices.push(s.slice(j * (s.length / multiple), (j + 1) * (s.length / multiple)));
             }

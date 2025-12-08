@@ -6,18 +6,22 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const input = fs.readFileSync(path.join(__dirname, 'input.txt'), 'utf-8');
-const lines = input.split('\n');
-const [left, right] = input.split('\n\n');
+const [left, _] = input.split('\n\n');
 const ranges = left.split('\n');
 
 let res = 0;
 
-let rangesFound = [];
+interface Range {
+    l: number;
+    r: number;
+}
+
+let rangesFound: Range[] = [];
 
 ranges.forEach(range => {
     let [min, max] = range.split('-').map(Number);
     let shouldAdd = true;
-    let shouldRemoveRanges = [];
+    let shouldRemoveRanges: Range[] = [];
     rangesFound.forEach(({ l, r }) => {
         if (max < l || min > r) {
             //no overlap
